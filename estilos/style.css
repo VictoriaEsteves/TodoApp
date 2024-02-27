@@ -12,6 +12,12 @@
 
 */
 
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+
 :root {
     --vdb: hsl(235, 21%, 11%);
     --vddb: hsl(235, 24%, 19%);
@@ -29,6 +35,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: var(--vdb);
+    position: relative;
 }
 
 main {
@@ -61,14 +68,38 @@ input {
 
 .taskTodo {
     background-color: var(--vddb);
-
+    border-radius: 5px;
 
     display: flex;
     flex-direction: column;
     margin: auto;
     color: var(--lgb);
     font-family: var(--font);
-    width: 40%;
+    width: 60%;
+}
 
-    padding: 2% 10%;
+li {
+    list-style-type: none;
+    text-align: start;
+    padding: 20px 20px;
+    border-style: none none solid none;
+    border-width: 1.5px;
+    border-color: var(--vdgb2);
+}
+
+.clear {
+    display: flex;
+    justify-content: end;
+
+    border: none;
+    background-color: transparent;
+    color: var(--vdgb);
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+.absolute {
+    position: absolute;
+    width: 100%;
 }

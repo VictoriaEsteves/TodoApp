@@ -25,3 +25,8 @@ function addTask() {
         taskInput.value = ""; // Limpar o campo de entrada após adicionar a tarefa
     }
 }
+
+function clearCompl() {
+    var taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+}
