@@ -59,8 +59,16 @@ input {
     color: var(--lgb);
 }
 
-.tasktodo {
+.taskTodo {
+    background-color: var(--vddb);
+
+
+    display: flex;
+    flex-direction: column;
+    margin: auto;
     color: var(--lgb);
     font-family: var(--font);
-    background-color: var(--vddb);
+    width: 40%;
+
+    padding: 2% 10%;
 }
