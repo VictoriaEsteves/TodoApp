@@ -52,8 +52,7 @@ main {
 h1 {
     display: flex;
     justify-content: space-between;
-    padding-left: 5px;
-    padding-right: 10px;
+    padding: 5% 2%;
 }
 
 input {
@@ -64,6 +63,11 @@ input {
     font-family: var(--font);
     outline: none;
     color: var(--lgb);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.342);
+}
+
+svg {
+    cursor: pointer;
 }
 
 .taskTodo {
@@ -81,10 +85,14 @@ input {
 li {
     list-style-type: none;
     text-align: start;
-    padding: 20px 20px;
+    padding-bottom: 5%;
     border-style: none none solid none;
     border-width: 1.5px;
     border-color: var(--vdgb2);
+}
+
+li:checked {
+    text-decoration: line-through;
 }
 
 .clear {
@@ -103,3 +111,25 @@ li {
     position: absolute;
     width: 100%;
 }
+
+
+input[type="checkbox"] {
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--vdgb2);
+    cursor: pointer;
+    border-radius: 50%;
+    transform: scale(60%) translateY(60%);
+    padding: 0%;
+    margin: 0%;
+
+    box-shadow: none;
+}
+
+input[type="checkbox"]:checked {
+    background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2215%22 height=%2213%22%3E%3Cpath fill=%22none%22 stroke=%22%23FFF%22 stroke-width=%222%22 d=%22M1 6.956L5.087 11 13 3%22/%3E%3C/svg%3E'), linear-gradient(135deg,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
