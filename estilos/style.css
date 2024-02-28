@@ -95,16 +95,15 @@ li:checked {
     text-decoration: line-through;
 }
 
-.clear {
+.filter {
     display: flex;
-    justify-content: end;
-
-    border: none;
-    background-color: transparent;
+    justify-content: space-between;
     color: var(--vdgb);
-    padding-top: 10px;
-    padding-right: 15px;
-    padding-bottom: 10px;
+    padding: 10px 15px;
+    font-family: var(--font);
+    cursor: pointer;
+    font-size: 12px;
+
 }
 
 .absolute {
@@ -133,3 +132,7 @@ input[type="checkbox"]:checked {
     background-position: center center;
 }
 
+li.completed {
+    text-decoration: line-through;
+    color: var(--vdgb);
+}

@@ -21,22 +21,54 @@ function addTask() {
         var taskList = document.getElementById("taskList");
         var newTaskItem = document.createElement("li");
         newTaskItem.innerHTML = `<label><input type="checkbox" onchange="toggleTaskCompletion(this)"> ${taskText}</label>`;
-        taskList.appendChild(newTaskItem);
+        
+        
+        var firstTaskItem = taskList.firstChild;
+        taskList.insertBefore(newTaskItem, firstTaskItem);
+        
+        
         taskInput.value = ""; // Limpar o campo de entrada após adicionar a tarefa
+        updateTaskCount();
     }
 
+}
+
+
+function toggleTaskCompletion(checkbox) {
+    var taskItem = checkbox.parentNode.parentNode; // Obtém o elemento li pai do checkbox
+    
+    if (checkbox.checked) {
+        taskItem.classList.add("completed"); // Adiciona a classe "completed" para estilização
+    } else {
+        taskItem.classList.remove("completed"); // Remove a classe "completed"
+    }
+    updateTaskCount();
+}
+
+function updateTaskCount() {
+    var taskList = document.getElementById("taskList");
+    var tasks = taskList.getElementsByTagName("li");
+    var activeTaskCount = 0;
+    
+    for (var i = 0; i < tasks.length; i++) {
+        var taskItem = tasks[i];
+        if (!taskItem.classList.contains('completed')) {
+            activeTaskCount++; // Incrementa o contador de tarefas ativas
+        }
+    }
+    
+    var taskCountElement = document.getElementById("taskCount");
+    taskCountElement.textContent = activeTaskCount + " tarefas restantes"; // Atualiza o texto com a contagem de tarefas ativas
 }
 
 function clearCompl() {
     var taskList = document.getElementById("taskList");
-    taskList.innerHTML = "";
-}
+    var completedTasks = taskList.querySelectorAll('.completed');
 
-function toggleTaskCompletion(checkbox) {
-    var taskItem = checkbox.parentNode.parentNode; // Obtém o elemento li pai do checkbox
-    if (checkbox.checked) {
-        document.style.tes
-    } else {
-        taskItem.classList.remove("completed"); // Remove a classe "completed"
+    // Remove todas as tarefas concluídas da lista
+    for (var i = 0; i < completedTasks.length; i++) {
+        taskList.removeChild(completedTasks[i]);
     }
+
+    updateTaskCount(); // Atualiza a contagem de tarefas restantes
 }
