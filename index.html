@@ -19,9 +19,9 @@
       </ul>
       <div class="filter">
       <p id="taskCount">0 tarefas restantes</p>
-      <p>All</p>
-      <p>Active</p>
-      <p>Completed</p>
+      <p onclick="showAllTasks()" class="buttom" >All</p>
+      <p onclick="filterTasks('active')" class="buttom" >Active</p>
+      <p onclick="filterTasks('completed')" class="buttom" >Completed</p>
       <p onclick="clearCompl()" class="clear">Clear Completed</p>
       </div>
     </div>

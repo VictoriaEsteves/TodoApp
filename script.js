@@ -33,7 +33,6 @@ function addTask() {
 
 }
 
-
 function toggleTaskCompletion(checkbox) {
     var taskItem = checkbox.parentNode.parentNode; // Obtém o elemento li pai do checkbox
     
@@ -71,4 +70,29 @@ function clearCompl() {
     }
 
     updateTaskCount(); // Atualiza a contagem de tarefas restantes
+}
+
+function filterTasks(taskType) {
+    var taskList = document.getElementById("taskList");
+    var tasks = taskList.getElementsByTagName("li");
+
+    for (var i = 0; i < tasks.length; i++) {
+        var taskItem = tasks[i];
+        if (taskType === 'completed' && taskItem.classList.contains('completed')) {
+            taskItem.style.display = 'block'; // Mostra as tarefas concluídas
+        } else if (taskType === 'active' && !taskItem.classList.contains('completed')) {
+            taskItem.style.display = 'block'; // Mostra as tarefas ativas
+        } else {
+            taskItem.style.display = 'none'; // Oculta as tarefas que não correspondem ao tipo selecionado
+        }
+    }
+}
+
+function showAllTasks() {
+    var taskList = document.getElementById("taskList");
+    var tasks = taskList.getElementsByTagName("li");
+
+    for (var i = 0; i < tasks.length; i++) {
+        tasks[i].style.display = 'block'; // Mostra todas as tarefas
+    }
 }

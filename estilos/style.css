@@ -26,6 +26,7 @@
     --dgb: hsl(234, 11%, 52%);
     --vdgb: hsl(233, 14%, 35%);
     --vdgb2: hsl(237, 14%, 26%);
+    --bb: hsl(220, 98%, 61%);
     --font: "Josefin Sans", sans-serif;
 
 }
@@ -106,6 +107,11 @@ li:checked {
 
 }
 
+.buttom:hover {
+    font-weight: 700;
+    color: var(--bb);
+}
+
 .absolute {
     position: absolute;
     width: 100%;
@@ -135,4 +141,9 @@ input[type="checkbox"]:checked {
 li.completed {
     text-decoration: line-through;
     color: var(--vdgb);
+}
+
+.clear:hover {
+    font-weight: 700;
+    color: var(--bb); 
 }
