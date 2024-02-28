@@ -1,3 +1,4 @@
+
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
@@ -19,23 +20,21 @@
 
 
 :root {
-    --vdb: hsl(235, 21%, 11%);
-    --vddb: hsl(235, 24%, 19%);
-    --lgb: hsl(234, 39%, 85%);
-    --lgb_h: hsl(236, 33%, 92%);
-    --dgb: hsl(234, 11%, 52%);
-    --vdgb: hsl(233, 14%, 35%);
-    --vdgb2: hsl(237, 14%, 26%);
+    --vlg: hsl(0, 0%, 98%);
+    --vlgb: hsl(236, 33%, 92%);
+    --lgb: hsl(233, 11%, 84%);
+    --dgb: hsl(236, 9%, 61%);
+    --vdgb: hsl(235, 19%, 35%);
     --bb: hsl(220, 98%, 61%);
     --font: "Josefin Sans", sans-serif;
 
 }
 
 body {
-    background-image: url('../images/bg-desktop-dark.jpg');
+    background-image: url('../images/bg-desktop-light.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--vdb);
+    background-color: var(--vlg);
     position: relative;
 }
 
@@ -60,10 +59,10 @@ input {
     border: none;
     padding: 3% 5%;
     border-radius: 5px;
-    background-color: var(--vddb);
+    background-color: var(--vlgb);
     font-family: var(--font);
     outline: none;
-    color: var(--lgb);
+    color: var(--vddb);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.342);
 }
 
@@ -72,7 +71,7 @@ svg {
 }
 
 .taskTodo {
-    background-color: var(--vddb);
+    background-color: var(--vlgb);
     border-radius: 5px;
 
     display: flex;
@@ -146,12 +145,4 @@ li.completed {
 .clear:hover {
     font-weight: 700;
     color: var(--bb); 
-}
-
-.moon {
-    
-}
-
-#themelight {
-    display: none;
 }

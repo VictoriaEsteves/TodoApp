@@ -96,3 +96,7 @@ function showAllTasks() {
         tasks[i].style.display = 'block'; // Mostra todas as tarefas
     }
 }
+
+    function changeLight() {
+        
+    }
