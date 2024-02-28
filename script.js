@@ -97,6 +97,79 @@ function showAllTasks() {
     }
 }
 
-    function changeLight() {
-        
+function toggleTheme() {
+    var themeLight = document.getElementById("themeLight");
+    var themeNight = document.getElementById("themeNight");
+    var themeSun = document.getElementById("themeSun");
+    var themeMoon = document.getElementById("themeMoon");
+
+    if (themeLight.disabled) {
+        themeLight.disabled = false;
+        themeNight.disabled = true;
+    } else {
+        themeLight.disabled = true;
+        themeNight.disabled = false;
     }
+
+    if (themeSun.style.display === "inline-block" || themeSun.style.display === "") {
+        themeSun.style.display = "none";
+        themeMoon.style.display = "inline-block";
+    } else {
+        themeMoon.style.display = "none";
+        themeSun.style.display = "inline-block";
+    }
+}
+
+/*
+function toggleTheme() {
+var themeLight = document.getElementById("themeLight");
+var themeNight = document.getElementById("themeNight");
+
+if (themeLight.disabled) {
+    themeLight.disabled = false;
+    themeNight.disabled = true;
+} else {
+    themeLight.disabled = true;
+    themeNight.disabled = false;
+}
+
+var themeSun = document.getElementById("themeSun");
+var themeMoon = document.getElementById("themeMoon");
+
+if (themeSun.style.display == "inline-block") {
+    themeSun.style.display = "none";
+    themeMoon.style.display = "inline-block";
+} else {
+    themeMoon.style.display = "none";
+    themeSun.style.display = "inline-block";
+}
+}
+function toggleTheme() {
+    var themeLight = document.getElementById("themeLight");
+    var themeNight = document.getElementById("themeNight");
+    
+    if (themeLight.disabled) {
+        themeLight.disabled = false;
+        themeNight.disabled = true;
+        themeSun.style.display = "none";
+    } else {
+        themeLight.disabled = true;
+        themeNight.disabled = false;
+        themeMoon.style.display = "inline-block";
+    }
+}
+
+
+function toggleTheme() {
+    var themeSun = document.getElementById("themeLight");
+    var themeMoon = document.getElementById("themeNight");
+    
+    if (themeSun.style.display == "inline-block") {
+        themeSun.style.display = "none";
+        themeMoon.style.display = "inline-block";
+    } else {
+        themeMoon.style.display = "none";
+        themeSun.style.display = "inline-block";
+    }
+}
+*/

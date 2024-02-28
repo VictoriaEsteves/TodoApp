@@ -148,10 +148,10 @@ li.completed {
     color: var(--bb); 
 }
 
-.moon {
-    
+#themeMoon {
+    display: none;
 }
 
-#themelight {
-    display: none;
+#themeSun {
+    display: inline-block;
 }
