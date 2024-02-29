@@ -63,7 +63,7 @@ input {
     background-color: var(--vddb);
     font-family: var(--font);
     outline: none;
-    color: var(--lgb);
+    color: var(--lgb_h);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.342);
 }
 
