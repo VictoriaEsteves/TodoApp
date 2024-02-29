@@ -6,13 +6,7 @@ function handleKeyPress(event) {
         addTask(); // Chama a função addTask() para adicionar uma nova tarefa
     }
 }
-/*
-function handleKeyPress(event) {
-    if (event.keyCode === 13) { // Verifica se a tecla pressionada é a tecla "Enter"
-        addTask(); // Chama a função addTask() para adicionar uma nova tarefa
-    }
-}
-*/
+
 function addTask() {
     var taskInput = document.getElementById("taskInput");
     var taskText = taskInput.value.trim(); // Remove espaços em branco no início e no final
