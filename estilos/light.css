@@ -27,7 +27,7 @@ body {
     background-image: url('../images/bg-desktop-light.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: var(--vlg);
+    background-color: var(--lgb);
     position: relative;
 }
 
@@ -82,6 +82,8 @@ li {
     border-style: none none solid none;
     border-width: 1.5px;
     border-color: var(--lgb);
+    text-transform: capitalize;
+
 }
 
 li:checked {

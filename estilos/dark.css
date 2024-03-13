@@ -65,6 +65,7 @@ input {
     outline: none;
     color: var(--lgb_h);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.342);
+
 }
 
 svg {
@@ -90,6 +91,8 @@ li {
     border-style: none none solid none;
     border-width: 1.5px;
     border-color: var(--vdgb2);
+    text-transform: capitalize;
+
 }
 
 li:checked {
