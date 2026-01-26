@@ -1,96 +1,122 @@
+// ================= LOCAL STORAGE =================
+function saveTasks() {
+    localStorage.setItem("todo2026", JSON.stringify(tasks));
+}
 
+function loadTasks() {
+    return JSON.parse(localStorage.getItem("todo2026")) || [];
+}
 
+// ================= ESTADO GLOBAL =================
+let tasks = loadTasks();
+
+// ================= TECLADO =================
 function handleKeyPress(event) {
-    console.log("Tecla pressionada:", event.keyCode);
-    if (event.keyCode === 13) { // Verifica se a tecla pressionada é a tecla "Enter"
-        addTask(); // Chama a função addTask() para adicionar uma nova tarefa
+    if (event.keyCode === 13) {
+        addTask();
     }
 }
 
-function addTask() {
-    var taskInput = document.getElementById("taskInput");
-    var taskText = taskInput.value.trim(); // Remove espaços em branco no início e no final
-    
-    if (taskText !== "") {
-        var taskList = document.getElementById("taskList");
-        var newTaskItem = document.createElement("li");
-        newTaskItem.innerHTML = `<label><input type="checkbox" onchange="toggleTaskCompletion(this)"> ${taskText}</label>`;
-        
-        
-        var firstTaskItem = taskList.firstChild;
-        taskList.insertBefore(newTaskItem, firstTaskItem);
-        
-        
-        taskInput.value = ""; // Limpar o campo de entrada após adicionar a tarefa
-        updateTaskCount();
+// ================= RENDER =================
+function renderTasks() {
+    var taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+
+    for (var i = 0; i < tasks.length; i++) {
+        var task = tasks[i];
+        var li = document.createElement("li");
+
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
+        li.innerHTML = `
+            <label>
+                <input type="checkbox"
+                    ${task.completed ? "checked" : ""}
+                    onchange="toggleTaskCompletion(${i})">
+                ${task.text}
+            </label>
+        `;
+
+        taskList.appendChild(li);
     }
 
-}
-
-function toggleTaskCompletion(checkbox) {
-    var taskItem = checkbox.parentNode.parentNode; // Obtém o elemento li pai do checkbox
-    
-    if (checkbox.checked) {
-        taskItem.classList.add("completed"); // Adiciona a classe "completed" para estilização
-    } else {
-        taskItem.classList.remove("completed"); // Remove a classe "completed"
-    }
     updateTaskCount();
 }
 
+// ================= ADD TASK =================
+function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var taskText = taskInput.value.trim();
+
+    if (taskText !== "") {
+        tasks.unshift({
+            text: taskText,
+            completed: false
+        });
+
+        saveTasks();
+        renderTasks();
+        taskInput.value = "";
+    }
+}
+
+// ================= TOGGLE =================
+function toggleTaskCompletion(index) {
+    tasks[index].completed = !tasks[index].completed;
+    saveTasks();
+    renderTasks();
+}
+
+// ================= CONTADOR =================
 function updateTaskCount() {
-    var taskList = document.getElementById("taskList");
-    var tasks = taskList.getElementsByTagName("li");
     var activeTaskCount = 0;
-    
+
     for (var i = 0; i < tasks.length; i++) {
-        var taskItem = tasks[i];
-        if (!taskItem.classList.contains('completed')) {
-            activeTaskCount++; // Incrementa o contador de tarefas ativas
+        if (!tasks[i].completed) {
+            activeTaskCount++;
         }
     }
-    
-    var taskCountElement = document.getElementById("taskCount");
-    taskCountElement.textContent = activeTaskCount + " tarefas restantes"; // Atualiza o texto com a contagem de tarefas ativas
+
+    document.getElementById("taskCount").textContent =
+        activeTaskCount + " tarefas restantes";
 }
 
+// ================= CLEAR COMPLETED =================
 function clearCompl() {
-    var taskList = document.getElementById("taskList");
-    var completedTasks = taskList.querySelectorAll('.completed');
+    tasks = tasks.filter(function (task) {
+        return !task.completed;
+    });
 
-    // Remove todas as tarefas concluídas da lista
-    for (var i = 0; i < completedTasks.length; i++) {
-        taskList.removeChild(completedTasks[i]);
-    }
-
-    updateTaskCount(); // Atualiza a contagem de tarefas restantes
+    saveTasks();
+    renderTasks();
 }
 
+// ================= FILTROS =================
 function filterTasks(taskType) {
     var taskList = document.getElementById("taskList");
-    var tasks = taskList.getElementsByTagName("li");
+    var items = taskList.getElementsByTagName("li");
 
-    for (var i = 0; i < tasks.length; i++) {
-        var taskItem = tasks[i];
-        if (taskType === 'completed' && taskItem.classList.contains('completed')) {
-            taskItem.style.display = 'block'; // Mostra as tarefas concluídas
-        } else if (taskType === 'active' && !taskItem.classList.contains('completed')) {
-            taskItem.style.display = 'block'; // Mostra as tarefas ativas
-        } else {
-            taskItem.style.display = 'none'; // Oculta as tarefas que não correspondem ao tipo selecionado
+    for (var i = 0; i < items.length; i++) {
+        if (taskType === "completed") {
+            items[i].style.display = tasks[i].completed ? "block" : "none";
+        } 
+        else if (taskType === "active") {
+            items[i].style.display = !tasks[i].completed ? "block" : "none";
         }
     }
 }
 
 function showAllTasks() {
-    var taskList = document.getElementById("taskList");
-    var tasks = taskList.getElementsByTagName("li");
+    var items = document.getElementById("taskList").getElementsByTagName("li");
 
-    for (var i = 0; i < tasks.length; i++) {
-        tasks[i].style.display = 'block'; // Mostra todas as tarefas
+    for (var i = 0; i < items.length; i++) {
+        items[i].style.display = "block";
     }
 }
 
+// ================= TEMA =================
 function toggleTheme() {
     var themeLight = document.getElementById("themeLight");
     var themeNight = document.getElementById("themeNight");
@@ -100,17 +126,15 @@ function toggleTheme() {
     if (themeLight.disabled) {
         themeLight.disabled = false;
         themeNight.disabled = true;
-    } else {
-        themeLight.disabled = true;
-        themeNight.disabled = false;
-    }
-
-    if (themeSun.style.display === "inline-block" || themeSun.style.display === "") {
         themeSun.style.display = "none";
         themeMoon.style.display = "inline-block";
     } else {
+        themeLight.disabled = true;
+        themeNight.disabled = false;
         themeMoon.style.display = "none";
         themeSun.style.display = "inline-block";
     }
 }
 
+// ================= INIT =================
+renderTasks();
