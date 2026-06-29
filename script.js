@@ -25,6 +25,7 @@ function renderTasks() {
     for (var i = 0; i < tasks.length; i++) {
         var task = tasks[i];
         var li = document.createElement("li");
+        var displayText = normalizeTaskText(task.text);
 
         if (task.completed) {
             li.classList.add("completed");
@@ -35,7 +36,7 @@ function renderTasks() {
                 <input type="checkbox"
                     ${task.completed ? "checked" : ""}
                     onchange="toggleTaskCompletion(${i})">
-                ${task.text}
+                ${displayText}
             </label>
         `;
 
@@ -43,6 +44,11 @@ function renderTasks() {
     }
 
     updateTaskCount();
+}
+
+function normalizeTaskText(text) {
+    if (!text) return text;
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
 
 // ================= ADD TASK =================
